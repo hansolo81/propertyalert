@@ -9,4 +9,8 @@ searchparams = {'ad_type': 'r',
                 'city': '658',
                 'pro_type': 'r'
                } 
+params = {'proptype_param' : 'r',
+          'state_param' : 'state',
+          'city_param': 'city',
+         } 
 xpath='//div[@id="search_box"]'                    

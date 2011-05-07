@@ -1,23 +1,14 @@
 from sqlalchemy import *
+from sqlalchemy.orm import * 
+from sqlalchemy.ext.declarative import declarative_base
+from models import *
+
+Base = declarative_base()
 
 engine = create_engine('sqlite:///sitesdb', echo=True)
-metadata = MetaData(bind=engine)
 
-states_table = Table('state', metadata,
-                    Column('id', Integer, primary_key=True),
-                    Column('name', String(40)),
-                    Column('code', String(5)),
-                    )
+Base.metadata.create_all(engine)    
 
-city_table = Table('city', metadata,
-                  Column('id', Integer, primary_key=True),
-                  Column('state_id', None, ForeignKey('state.id')),
-                  Column('name', String(40)),
-                  Column('code', String(5)),
-                  )
-
-metadata.create_all()
-  
 
 
 

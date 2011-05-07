@@ -9,6 +9,11 @@ searchparams = {'t': 'R',
                 'ct': 'Keramat',
                 'lo': '3' 
                }
+params = {'proptype_param': 'gpt',
+          'state_param': 'st',
+          'city_param': 'ct',
+          'range_param': 'lo'
+         }
 xpath = '//div[@id="ct_result"]'
                     
 

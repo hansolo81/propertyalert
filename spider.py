@@ -42,7 +42,7 @@ def parse():
         soup = html.fromstring(response.read())
         cont = ''.join([html.tostring(x) for x in soup.xpath(mod.xpath)])  
 
-        file = open('%s.html' % site, 'w')
+        file = open('html/%s.html' % site, 'w')
         file.write(cont)
         file.close()     
 
