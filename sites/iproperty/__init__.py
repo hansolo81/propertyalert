@@ -7,9 +7,10 @@ searchparams = {'t': 'R',
                 'gpt': 'AR',
                 'st': 'KL',
                 'ct': 'Keramat',
-                'lo': '3' 
+                'lo': '1' 
                }
-params = {'proptype_param': 'gpt',
+params = {'searchtype_param': 't',
+          'proptype_param': 'gpt',
           'state_param': 'st',
           'city_param': 'ct',
           'range_param': 'lo'

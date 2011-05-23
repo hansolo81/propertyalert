@@ -2,7 +2,7 @@ from sqlalchemy import *
 from sqlalchemy.orm import sessionmaker, mapper, relation, relationship, backref
 from sqlalchemy.ext.declarative import declarative_base
 from models import *
-from sites import iproperty, fullhouse
+from sites import iproperty, fullhouse, mudah
 
 engine = create_engine('sqlite:///sitesdb', echo=True)
 metadata = MetaData(bind=engine)
@@ -37,19 +37,21 @@ site2 = Site(name='fullhouse', url=fullhouse.url,
              formname=fullhouse.formname, xpath=fullhouse.xpath, 
              params=fullhouse.params)
 
+site3 = Site(name='mudah', url=mudah.url, 
+             formaction=mudah.formaction, isform=mudah.isform, 
+             formname=mudah.formname, xpath=mudah.xpath, 
+             params=mudah.params)
+
+
 sites.append(site1)
 sites.append(site2)
-
-searches = []
-searches.append(Search(site_id=1, params={'proptype_param':'r', 
-                                          'state_param':'KL',
-                                          'city_param':'Wangsa+Maju'}))
+sites.append(site3)
 
 for s in sites:
     session.add(s)
 
-for s in searches:
-    session.add(s)
+session.add(User(firstname='han', lastname='solo', email='hansolo81@gmail.com'))
+session.add(User(firstname='star', lastname='buck', email='shazzerin@yahoo.com'))
 
 session.commit()
     

@@ -9,7 +9,8 @@ searchparams = {'ad_type': 'r',
                 'city': '658',
                 'pro_type': 'r'
                } 
-params = {'proptype_param' : 'r',
+params = {'proptype_param' : 'pro_type',
+          'searchtype_param' : 'ad_type',
           'state_param' : 'state',
           'city_param': 'city',
          } 
