@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
-engine = create_engine('sqlite:///sitesdb', echo=True)
+engine = create_engine('sqlite:///sitesdb', echo=False)
 
 class User(Base):
     __tablename__ = 'user'

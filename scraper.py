@@ -19,18 +19,17 @@ def execute():
     users = session.query(User)
 
     for user in users:
-        ## cosmetics goes here
-        root = E.HTML(E.HEAD(
-                        #E.LINK(href="base.css", rel="stylesheet", type="text/css")
-                        ),                      
-                      )
+        search_dict = defaultdict(list)
+
+        ## initialize html elements
+        root = E.HTML(E.HEAD())
         body = E.BODY() 
         root.append(body)
-
         searches = user.searches
+
         if len(searches) == 0:
-            continue
-        search_dict = defaultdict(list)
+            continue        # user has no search params
+
 
         for search in user.searches:
             params = search.params
@@ -72,10 +71,9 @@ def execute():
             res = mod.parse(response.read())
 
             if len(res) == 0:
-                continue # no result
+                continue # no parsing result
 
             search_dict[site.url.split('/')[0]].extend(wrap(res))
-            #print 'cont is : %s' % cont
 
         for siteurl, trees in search_dict.iteritems():
             ## wrap elements in a nice table wrapper
@@ -85,17 +83,15 @@ def execute():
             body.append(tbl)
 
         file = open('html/%s.html' % user.email, 'w')
-        file.write(html.tostring(root))
+        file.write(html.tostring(root, pretty_print=True))
         file.close()     
 
 def wrap(results=[]):
     rows = []
 
     for d in results:
-        print 'result is %s' % d
         tr = E.TR(
                E.TD(
-                #E.DIV('%s' % d['prop_name'].capitalize()),
                 E.DIV(E.A('%s' % d['prop_name'], href='%s' % d['url'])),
                 *list(E.DIV('%s:%s' % (k,v)) for k,v in d.iteritems() \
                           if k not in('prop_name', 'url')),
